@@ -1,0 +1,33 @@
+#pl/sql block to print "hello, pl/sql!"
+
+begin
+   dbms_output.put_line('hello, pl/sql!');
+end;
+
+#create a procedure multiply that takes two parameters and returns their product.
+
+create or replace procedure multiply(x in number, y in number, result out number) as
+begin
+   result := x * y;
+end;
+
+# problem: create a function calculate_salary that calculates the salary by multiplying a given hourly wage by hours worked.
+
+create or replace function calculate_salary(hourly_wage in number, hours_worked in number) return number as
+   total_salary number;
+begin
+   total_salary := hourly_wage * hours_worked;
+   return total_salary;
+end;
+
+
+#write a pl/sql block to update the salary of an employee with id 101 to 5000.
+
+begin
+   update employees
+   set salary = 5000
+   where employee_id = 101;
+   commit;
+end;
+
+
