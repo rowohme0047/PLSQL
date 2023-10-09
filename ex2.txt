@@ -1,0 +1,47 @@
+#write a pl/sql block to handle a no_data_found exception and display 'no data found' when it occurs.
+
+begin
+   select column_name into variable
+   from table_name
+   where condition;
+
+   -- your code here
+exception
+   when no_data_found then
+      dbms_output.put_line('no data found');
+end;
+
+#create a procedure update_salary that increases the salary of all employees in a specific department by 10%.
+
+create or replace procedure update_salary(dept_name in varchar2) as
+begin
+   update employees
+   set salary = salary * 1.1
+   where department_name = dept_name;
+   commit;
+end;
+
+
+#create a function calculate_discount that calculates a discount based on a purchase amount and applies it to the total.
+
+create or replace function calculate_discount(purchase_amount in number) return number as
+   discount number;
+begin
+   if purchase_amount >= 1000 then
+      discount := purchase_amount * 0.1;
+   else
+      discount := 0;
+   end if;
+   return purchase_amount - discount;
+end;
+
+#write a pl/sql block to raise a user-defined exception invalid_input with the message 'invalid input' when a certain condition is met.
+
+begin
+   if condition then
+      raise invalid_input;
+   end if;
+exception
+   when invalid_input then
+      dbms_output.put_line('invalid input');
+end;
