@@ -1,0 +1,39 @@
+#Write a PL/SQL block that calculates the factorial of a given number and stores the result in a variable. Assume the input number is stored in a variable named input_number. The result should be stored in a variable named result_factorial.
+
+declare
+  input_number number:= 5;
+  result_factorial number:= 1;
+begin
+  for i in 1..input_number loop
+    result_factorial := result_factorial * i;
+  end loop
+  dbms_output.put_line('Factorial of ' || input_number || ' is ' || result_factorial);
+end;
+
+#Write a PL/SQL block to declare a variable named total_salary and calculate the sum of salaries from an employees table, assuming the table has a salary column.
+
+declare
+  total_salary number := 0;
+begin
+  select sum(salary) into total_salary from employees;
+  dbms_output.put_line('Total Salary: ' || total_salary);
+end
+
+#Write a PL/SQL block to create a procedure named add_numbers that takes two parameters, num1 and num2, and returns their sum.
+
+create or replace procedure add_numbers(num1 numbe, num2 number)AS
+  result number
+begin
+  result := num1 + num2;
+  dbms_output.put_line('Sum: ' || result);
+end add_numbers;
+/
+
+ To execute the procedure:
+declare
+a number:= 5;
+b number:= 10;
+begin
+add_numbers(a, b);
+end
+
