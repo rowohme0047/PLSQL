@@ -1,0 +1,2 @@
+# plsql
+pl/sql exercises
