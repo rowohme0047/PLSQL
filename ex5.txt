@@ -1,0 +1,43 @@
+#Write a pl/sql block to update the salary column of an employee with employee_id 101 to 6000.
+
+begin
+  update employees
+  set salary = 6000
+  where employee_id = 101;
+  commit;
+end;
+/
+ 
+#Write a pl/sql block to display the names of employees whose salaries are greater than 5000.
+
+declare
+  emp_name varchar2(50);
+begin
+  for emp_rec in (select first_name from employees where salary > 5000) loop
+    emp_name := emp_rec.first_name;
+    dbms_output.put_line('employee name: ' || emp_name);
+  end loop;
+end;
+/
+
+#Write a pl/sql block to delete all records from a table named orders where the order_status is 'cancelled'.
+
+begin
+  delete from orders
+  where order_status = 'cancelled';
+  commit;
+end;
+/
+ 
+#Write a pl/sql block to declare and initialize a cursor named employee_cursor to retrieve the employee_id and first_name of all employees.
+
+declare
+  cursor employee_cursor is
+    select employee_id, first_name from employees;
+begin
+  -- use the cursor as needed
+  for emp_rec in employee_cursor loop
+    dbms_output.put_line('employee id: ' || emp_rec.employee_id || ', first name: ' || emp_rec.first_name);
+  end loop;
+end;
+/
