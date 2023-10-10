@@ -1,0 +1,23 @@
+#Write a pl/sql block to declare an associative array named emp_salaries and populate it with the employee_id as the index and salary as the value for all employees.
+
+declare
+  type salary_assoc_array is table of number index by number;
+  emp_salaries salary_assoc_array;
+begin
+  for emp_rec in (select employee_id, salary from employees) loop
+    emp_salaries(emp_rec.employee_id) := emp_rec.salary;
+  end loop;
+  -- access values in the associative array as needed
+  dbms_output.put_line('salary of employee with id 101: ' || emp_salaries(101));
+end;
+/
+
+#Write a pl/sql block to declare a variable named total_salary and calculate the sum of salaries from an employees table, assuming the table has a salary column.
+
+declare
+  total_salary number := 0;
+begin
+  select sum(salary) into total_salary from employees;
+  dbms_output.put_line('total salary: ' || total_salary);
+end;
+/
