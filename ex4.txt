@@ -1,0 +1,39 @@
+#Write a pl/sql block to create a function named calculate_area that takes the radius of a circle as a parameter and returns the area of the circle
+
+create or replace function calculate_area(radius number) return number as
+  area number;
+begin
+  area := 3.14159265359 * radius * radius;
+  return area;
+end calculate_area;
+
+#Write a pl/sql block to handle an exception if a division by zero error occurs while dividing two numbers.
+
+declare
+  num1 number := 10;
+  num2 number := 0;
+  result number;
+begin
+  result := num1 / num2;
+  dbms_output.put_line('result: ' || result);
+exception
+  when zero_divide then
+    dbms_output.put_line('division by zero error.');
+end;
+/
+
+#Write a pl/sql block to handle an exception if a division by zero error occurs while dividing two numbers.
+
+declare
+  num1 number := 10;
+  num2 number := 0;
+  result number;
+begin
+  result := num1 / num2;
+  dbms_output.put_line('result: ' || result);
+exception
+  when zero_divide then
+    dbms_output.put_line('division by zero error.');
+end;
+/
+
