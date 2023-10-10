@@ -1,0 +1,72 @@
+#Write a PL/SQL block to declare a variable named total_discount and calculate the total discount amount for all orders in an orders table, assuming the table has a discount_amount column.
+
+declare
+  total_discount number := 0;
+begin
+  select sum(discount_amount) into total_discount from orders;
+  dbms_output.put_line('total discount: ' || total_discount);
+end;
+/
+
+#Write a PL/SQL block to create a procedure named update_salary that takes an employee_id and a new_salary as parameters and updates the salary of the specified employee.
+
+create or replace procedure update_salary(employee_id number, new_salary number) as
+begin
+  update employees
+  set salary = new_salary
+  where employee_id = employee_id;
+  commit;
+end update_salary;
+/
+
+#Write a PL/SQL block to handle an exception if an invalid date format is encountered while inserting data into a table.
+
+begin
+exception
+  when others then
+    dbms_output.put_line('invalid date format encountered');
+end;
+/
+
+#Write a PL/SQL block to delete all records from a table named products where the stock_quantity is less than 10.
+
+begin
+  delete from products
+  where stock_quantity < 10;
+  commit;
+end;
+/
+
+#Write a PL/SQL block to display the names of employees whose salaries are less than 3000.
+
+declare
+  emp_name varchar2(50);
+begin
+  for emp_rec in (select first_name from employees where salary < 3000) loop
+    emp_name := emp_rec.first_name;
+    dbms_output.put_line('employee name: ' || emp_name);
+  end loop;
+end;
+/
+
+#Write a PL/SQL block to create a sequence named order_seq with a starting value of 1001 and an increment of 1.
+
+create sequence order_seq
+  start with 1001
+  increment by 1;
+
+#Write a PL/SQL block to declare and initialize a cursor named customer_cursor to retrieve the customer_id and customer_name of all customers.
+
+declare
+  cursor customer_cursor is
+    select customer_id, customer_name from customers;
+begin
+ 
+  for cust_rec in customer_cursor loop
+    dbms_output.put_line('customer id: ' || cust_rec.customer_id || ', customer name: ' || cust_rec.customer_name);
+  end loop;
+end;
+/
+
+
+
